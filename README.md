@@ -60,6 +60,36 @@ Bing works the same way via `BingProvider(api_key="…")`. A pandas frame:
 enriched = ls.enrich_dataframe(df, name_col="name", email_col="email")
 ```
 
+### Caching, MX intelligence & bulk (v0.2)
+
+**Cache** repeated queries so you don't re-bill the API — in memory or persisted:
+
+```python
+from leadsearch import LeadSearch, GoogleProvider, CachingProvider, JSONFileCache
+
+provider = CachingProvider(GoogleProvider(api_key="…", cx="…"),
+                           JSONFileCache("leadsearch-cache.json"))
+ls = LeadSearch(provider)
+```
+
+**MX intelligence** — a custom domain hosted on Google Workspace / Microsoft 365
+is a real company, not free webmail. Pass `mx_lookup` (needs `pip install
+".[dns]"`) to detect the mail host, confirm deliverability, and recover a company
+name the plain heuristic missed:
+
+```python
+from leadsearch.domain_intel import default_mx_lookup
+ls = LeadSearch(provider, mx_lookup=default_mx_lookup)
+# notes: "mail hosted on microsoft" / "domain has no MX record (may be undeliverable)"
+```
+
+**Bulk, concurrently** — the search calls are I/O-bound, so a thread pool speeds
+up large lists (output order preserved):
+
+```python
+leads = ls.enrich(rows, workers=8)
+```
+
 ### Testing offline
 
 ```python

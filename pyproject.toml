@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leadsearch"
-version = "0.1.0"
+version = "0.2.0"
 description = "Enrich (name, e-mail) leads with job title, workplace and LinkedIn profile via search APIs."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -22,6 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 pandas = ["pandas>=1.3"]
+dns = ["dnspython>=2.0"]      # MX-record domain intelligence
 test = ["pytest>=7.0"]
 
 [project.urls]
