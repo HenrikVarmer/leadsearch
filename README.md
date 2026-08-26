@@ -108,7 +108,7 @@ LeadSearch(mock).enrich_one("Jane Doe", "jane@acme.com")
 | `LeadSearch(provider)` | `.enrich(leads)`, `.enrich_one(name, email)`, `.enrich_dataframe(df)` |
 | `GoogleProvider` / `BingProvider` / `MockProvider` | Search backends |
 | `analyze_email(email)` | Company / name / account-type inference |
-| `parse_linkedin(title, snippet)` | Parse a result into name/title/company |
+| `parse_linkedin(title, snippet, name)` | Parse a result into name/title/company |
 | `score_candidate` / `rank_candidates` | Result scoring |
 | `Lead` | Enriched result dataclass |
 
