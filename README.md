@@ -51,7 +51,7 @@ leads = ls.enrich([
 for lead in leads:
     print(lead.as_dict())
 # {'name': 'Jane Doe', 'title': 'Head of Data', 'workplace': 'Acme',
-#  'link': 'https://linkedin.com/in/janedoe', 'confidence': 0.86, ...}
+#  'link': 'https://linkedin.com/in/janedoe', 'confidence': 1.0, ...}
 ```
 
 Bing works the same way via `BingProvider(api_key="…")`. A pandas frame:
